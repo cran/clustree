@@ -24,6 +24,9 @@ clustree(iris_clusts, prefix = "K", node_colour = "Sepal.Width",
 ## ----iris-layout---------------------------------------------------------
 clustree(iris_clusts, prefix = "K", layout = "sugiyama")
 
+## ----iris-layout-nocore--------------------------------------------------
+clustree(iris_clusts, prefix = "K", layout = "sugiyama", use_core_edges = FALSE)
+
 ## ----sim_sc3-------------------------------------------------------------
 library("SingleCellExperiment")
 
@@ -49,7 +52,27 @@ head(sim_seurat@meta.data)
 clustree(sim_seurat)
 
 ## ----plot-gene-----------------------------------------------------------
-clustree(sim_seurat, node_colour = "Gene5", node_colour_aggr = "median")
+clustree(sim_seurat, node_colour = "Gene730", node_colour_aggr = "median")
+
+## ----iris-overlay--------------------------------------------------------
+clustree_overlay(iris_clusts, prefix = "K", x_value = "PC1", y_value = "PC2")
+
+## ----iris-overlay-colour-------------------------------------------------
+clustree_overlay(iris_clusts, prefix = "K", x_value = "PC1", y_value = "PC2",
+                 use_colour = "points", alt_colour = "blue")
+
+## ----iris-overlay-lables-------------------------------------------------
+clustree_overlay(iris_clusts, prefix = "K", x_value = "PC1", y_value = "PC2",
+                 label_nodes = TRUE)
+
+## ----iris-overlay-sides--------------------------------------------------
+overlay_list <- clustree_overlay(iris_clusts, prefix = "K", x_value = "PC1",
+                                 y_value = "PC2", plot_sides = TRUE)
+
+names(overlay_list)
+
+overlay_list$x_side
+overlay_list$y_side
 
 ## ----modify--------------------------------------------------------------
 clustree(iris_clusts, prefix = "K") +
@@ -60,4 +83,7 @@ clustree(iris_clusts, prefix = "K") +
 clustree(iris_clusts, prefix = "K") +
     guides(edge_colour = FALSE, edge_alpha = FALSE) +
     theme(legend.position = "bottom")
+
+## ----citation------------------------------------------------------------
+citation("clustree")
 

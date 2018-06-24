@@ -1,8 +1,8 @@
 Package: clustree
 Type: Package
 Title: Visualise Clusterings at Different Resolutions
-Version: 0.1.2
-Date: 2018-04-11
+Version: 0.2.0
+Date: 2018-06-24
 Authors@R: 
     c(person("Luke", "Zappia", role = c("aut", "cre"),
       email = "luke.zappia@mcri.edu.au",
@@ -18,7 +18,7 @@ Description: Deciding what resolution to use can be a difficult question when
     look at how samples move as the number of clusters increases. This package
     allows you to produce clustering trees, a visualisation for interrogating
     clusterings as resolution increases.
-License: MIT + file LICENSE
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/lazappi/clustree
@@ -26,14 +26,14 @@ BugReports: https://github.com/lazappi/clustree/issues
 VignetteBuilder: knitr
 Depends: R (>= 3.4), ggraph
 Imports: checkmate, igraph, dplyr, grid, ggplot2, viridis, methods,
-        rlang
+        rlang, tidygraph, ggrepel
 Suggests: testthat, knitr, rmarkdown, SingleCellExperiment, Seurat,
-        covr
+        covr, SummarizedExperiment
 RoxygenNote: 6.0.1
 NeedsCompilation: no
-Packaged: 2018-04-20 00:25:18 UTC; luke.zappia
+Packaged: 2018-06-24 05:48:58 UTC; luke.zappia
 Author: Luke Zappia [aut, cre] (<https://orcid.org/0000-0001-7744-8565>),
   Alicia Oshlack [aut] (<https://orcid.org/0000-0001-9788-5690>),
   Andrea Rau [ctb]
 Repository: CRAN
-Date/Publication: 2018-04-20 03:18:46 UTC
+Date/Publication: 2018-06-24 06:24:15 UTC
