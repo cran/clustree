@@ -1,13 +1,13 @@
-b88617565102404e9b2d5876f9b24e0a *DESCRIPTION
+aa1d2297c076c2f81f64f847f4715416 *DESCRIPTION
 9efdc603a0509f944d7f3b4cb33853bb *NAMESPACE
-a1e9e5db1fcfb6f0035a36cdbf27bb35 *NEWS.md
+73a12e7281176f1182215a1c4cdbc427 *NEWS.md
 6880fa5f8bfb5fa4bab08d11260d4b61 *R/clustree-package.R
-8b870ebf7c2c6c7605f636639108171a *R/clustree.R
+0ea19bda08d6dee98df9efaf943abc1a *R/clustree.R
 cbaed51166be293b2a8df6dcd548a1f0 *R/clustree_overlay.R
 f77b80ca69af46c8bd1a1ac1749d8916 *R/datasets.R
 5cef9c3adf01ba12db9d7a40f212b23c *R/graph.R
 cd24bcf0e3a1a268ebdf41bd96900451 *R/stability.R
-6542fba840d8e63c255234490bf8a8c0 *README.md
+5adb5174b6b5b9217142ce66c094c4a9 *README.md
 3dbbcdc011a1b42bce4d72ef6a2cbe35 *build/vignette.rds
 481a5c3a7a6efb053f6709b051a77603 *data/datalist
 3e3b1a5d4a9d941522210f137d5e0120 *data/iris_clusts.rda
@@ -16,7 +16,7 @@ cd24bcf0e3a1a268ebdf41bd96900451 *R/stability.R
 4f0fc2adc80a0c0d294cf4416b1ea19b *inst/CITATION
 ce32ba66f5d287e3dc110625ce13d05b *inst/doc/clustree.R
 68313b50ba617ee5038e14455767267c *inst/doc/clustree.Rmd
-75da0ba81705290417c5792293b8e6b0 *inst/doc/clustree.html
+74620891e416cd7e22fbdb5765e5dc58 *inst/doc/clustree.html
 be3643e7f60efd3c8a4f68d90997855e *man/add_node_points.Rd
 8fe824196766834812ddd6baf501aec3 *man/aggr_metadata.Rd
 5551e9e2dbf5c8437c52766b566cb9df *man/assert_colour_node_aes.Rd

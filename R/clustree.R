@@ -320,6 +320,11 @@ clustree.SingleCellExperiment <- function(x, prefix, exprs = "counts", ...) {
              "installed for clustree to use SingleCellExperiment objects")
     }
 
+    if (!requireNamespace("SummarizedExperiment", quietly = TRUE)) {
+        stop("The SummarizedExperiment package is missing, this must be",
+             "installed for clustree to use SingleCellExperiment objects")
+    }
+
     checkmate::assert_class(x, "SingleCellExperiment")
     checkmate::assert_character(exprs, any.missing = FALSE, len = 1)
 
