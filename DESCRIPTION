@@ -1,8 +1,8 @@
 Package: clustree
 Type: Package
 Title: Visualise Clusterings at Different Resolutions
-Version: 0.2.1
-Date: 2018-07-09
+Version: 0.2.2
+Date: 2018-07-10
 Authors@R: 
     c(person("Luke", "Zappia", role = c("aut", "cre"),
       email = "luke.zappia@mcri.edu.au",
@@ -31,9 +31,9 @@ Suggests: testthat, knitr, rmarkdown, SingleCellExperiment, Seurat,
         covr, SummarizedExperiment
 RoxygenNote: 6.0.1
 NeedsCompilation: no
-Packaged: 2018-07-09 04:30:44 UTC; luke.zappia
+Packaged: 2018-07-10 05:06:05 UTC; luke.zappia
 Author: Luke Zappia [aut, cre] (<https://orcid.org/0000-0001-7744-8565>),
   Alicia Oshlack [aut] (<https://orcid.org/0000-0001-9788-5690>),
   Andrea Rau [ctb]
 Repository: CRAN
-Date/Publication: 2018-07-09 10:00:08 UTC
+Date/Publication: 2018-07-10 09:00:03 UTC

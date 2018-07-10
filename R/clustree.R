@@ -47,9 +47,8 @@
 #' @param edge_arrow_ends string indicating which ends of the line to draw arrow
 #' heads if `edge_arrow` is `TRUE`, one of "last", "first", or "both"
 #' @param exprs source of gene expression information to use as node aesthetics,
-#' for `SingleCellExperiment` objects it must be a name in
-#' [SummarizedExperiment::assayNames()], for a `seurat` object it must be one of
-#' `data`, `raw.data` or `scale.data`
+#' for `SingleCellExperiment` objects it must be a name in `assayNames(x)`, for
+#' a `seurat` object it must be one of `data`, `raw.data` or `scale.data`
 #' @param return string specifying what to return, either "plot" (a `ggplot`
 #' object), "graph" (a `tbl_graph` object) or "layout" (a `ggraph` layout
 #' object)
@@ -317,11 +316,6 @@ clustree.SingleCellExperiment <- function(x, prefix, exprs = "counts", ...) {
 
     if (!requireNamespace("SingleCellExperiment", quietly = TRUE)) {
         stop("The SingleCellExperiment package is missing, this must be",
-             "installed for clustree to use SingleCellExperiment objects")
-    }
-
-    if (!requireNamespace("SummarizedExperiment", quietly = TRUE)) {
-        stop("The SummarizedExperiment package is missing, this must be",
              "installed for clustree to use SingleCellExperiment objects")
     }
 

@@ -27,32 +27,53 @@ clustree(iris_clusts, prefix = "K", layout = "sugiyama")
 ## ----iris-layout-nocore--------------------------------------------------
 clustree(iris_clusts, prefix = "K", layout = "sugiyama", use_core_edges = FALSE)
 
-## ----sim_sc3-------------------------------------------------------------
-library("SingleCellExperiment")
+## ----sc-example----------------------------------------------------------
+data("sc_example")
+names(sc_example)
 
-data("sim_sc3")
-sim_sc3
+## ----sce-present, echo = FALSE-------------------------------------------
+sce_present <- requireNamespace("SingleCellExperiment", quietly = TRUE)
 
-## ----sim_sc3-colData-----------------------------------------------------
-head(colData(sim_sc3))
+## ----sce-not, echo = FALSE, results = 'asis', eval = !sce_present--------
+#  cat("> **NOTE:** This section requires the SingleCellExperiment package.",
+#      "This is missing so the results won't be shown.")
 
-## ----sim_sc3-plot--------------------------------------------------------
-clustree(sim_sc3, prefix = "sc3_", suffix = "_clusters")
+## ----sce, eval = sce_present---------------------------------------------
+suppressPackageStartupMessages(library("SingleCellExperiment"))
 
-## ----sim_seurat----------------------------------------------------------
-library("Seurat")
+sce <- SingleCellExperiment(assays = list(counts = sc_example$counts,
+                                          logcounts = sc_example$logcounts),
+                            colData = sc_example$sc3_clusters,
+                            reducedDims = SimpleList(TSNE = sc_example$tsne))
 
-data("sim_seurat")
-sim_seurat
+## ----sce-colData, eval = sce_present-------------------------------------
+head(colData(sce))
 
-## ----sim_seurat-meta-----------------------------------------------------
-head(sim_seurat@meta.data)
+## ----sce-plot, eval = sce_present----------------------------------------
+clustree(sce, prefix = "sc3_", suffix = "_clusters")
 
-## ----sim_seurat-plot-----------------------------------------------------
-clustree(sim_seurat)
+## ----seurat-present, echo = FALSE----------------------------------------
+seurat_present <- requireNamespace("Seurat", quietly = TRUE)
 
-## ----plot-gene-----------------------------------------------------------
-clustree(sim_seurat, node_colour = "Gene730", node_colour_aggr = "median")
+## ----seurat-not, echo = FALSE, results = 'asis', eval = !seurat_present----
+#  cat("> **NOTE:** This section requires the Seurat package.",
+#      "This is missing so the results won't be shown.")
+
+## ----seurat, eval = seurat_present---------------------------------------
+suppressPackageStartupMessages(library("Seurat"))
+
+seurat <- CreateSeuratObject(sc_example$counts,
+                             meta.data = sc_example$seurat_clusters)
+seurat <- SetDimReduction(seurat, "TSNE", "cell.embeddings", sc_example$tsne)
+
+## ----seurat-meta, eval = seurat_present----------------------------------
+head(seurat@meta.data)
+
+## ----seurat-plot, eval = seurat_present----------------------------------
+clustree(seurat)
+
+## ----plot-gene, eval = seurat_present------------------------------------
+clustree(seurat, node_colour = "Gene730", node_colour_aggr = "median")
 
 ## ----iris-overlay--------------------------------------------------------
 clustree_overlay(iris_clusts, prefix = "K", x_value = "PC1", y_value = "PC2")
