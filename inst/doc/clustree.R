@@ -27,6 +27,23 @@ clustree(iris_clusts, prefix = "K", layout = "sugiyama")
 ## ----iris-layout-nocore--------------------------------------------------
 clustree(iris_clusts, prefix = "K", layout = "sugiyama", use_core_edges = FALSE)
 
+## ----iris-labels---------------------------------------------------------
+clustree(iris_clusts, prefix = "K", node_label = "Petal.Length",
+         node_label_aggr = "max")
+
+## ----iris-labels-custom--------------------------------------------------
+label_species <- function(labels) {
+    if (length(unique(labels)) == 1) {
+        species <- as.character(unique(labels))
+    } else {
+        species <- "mixed"
+    }
+    return(species)
+}
+
+clustree(iris_clusts, prefix = "K", node_label = "Species",
+         node_label_aggr = "label_species")
+
 ## ----sc-example----------------------------------------------------------
 data("sc_example")
 names(sc_example)
@@ -36,7 +53,7 @@ sce_present <- requireNamespace("SingleCellExperiment", quietly = TRUE)
 
 ## ----sce-not, echo = FALSE, results = 'asis', eval = !sce_present--------
 #  cat("> **NOTE:** This section requires the SingleCellExperiment package.",
-#      "This is missing so the results won't be shown.")
+#      "This package isn't installed so the results won't be shown.")
 
 ## ----sce, eval = sce_present---------------------------------------------
 suppressPackageStartupMessages(library("SingleCellExperiment"))
@@ -57,7 +74,7 @@ seurat_present <- requireNamespace("Seurat", quietly = TRUE)
 
 ## ----seurat-not, echo = FALSE, results = 'asis', eval = !seurat_present----
 #  cat("> **NOTE:** This section requires the Seurat package.",
-#      "This is missing so the results won't be shown.")
+#      "This package isn't installed so the results won't be shown.")
 
 ## ----seurat, eval = seurat_present---------------------------------------
 suppressPackageStartupMessages(library("Seurat"))
@@ -82,7 +99,7 @@ clustree_overlay(iris_clusts, prefix = "K", x_value = "PC1", y_value = "PC2")
 clustree_overlay(iris_clusts, prefix = "K", x_value = "PC1", y_value = "PC2",
                  use_colour = "points", alt_colour = "blue")
 
-## ----iris-overlay-lables-------------------------------------------------
+## ----iris-overlay-labels-------------------------------------------------
 clustree_overlay(iris_clusts, prefix = "K", x_value = "PC1", y_value = "PC2",
                  label_nodes = TRUE)
 
