@@ -21,6 +21,9 @@ clustree(iris_clusts, prefix = "K", node_colour = "purple", node_size = 10,
 clustree(iris_clusts, prefix = "K", node_colour = "Sepal.Width",
          node_colour_aggr = "mean")
 
+## ----iris-stability------------------------------------------------------
+clustree(iris_clusts, prefix = "K", node_colour = "sc3_stability")
+
 ## ----iris-layout---------------------------------------------------------
 clustree(iris_clusts, prefix = "K", layout = "sugiyama")
 
@@ -51,7 +54,7 @@ names(sc_example)
 ## ----sce-present, echo = FALSE-------------------------------------------
 sce_present <- requireNamespace("SingleCellExperiment", quietly = TRUE)
 
-## ----sce-not, echo = FALSE, results = 'asis', eval = !sce_present--------
+## ----sce-not, echo = FALSE, results = "asis", eval = !sce_present--------
 #  cat("> **NOTE:** This section requires the SingleCellExperiment package.",
 #      "This package isn't installed so the results won't be shown.")
 
@@ -70,27 +73,33 @@ head(colData(sce))
 clustree(sce, prefix = "sc3_", suffix = "_clusters")
 
 ## ----seurat-present, echo = FALSE----------------------------------------
-seurat_present <- requireNamespace("Seurat", quietly = TRUE)
+seurat_present <- requireNamespace("Seurat", quietly = TRUE) &&
+    packageVersion("Seurat") >= package_version(x = "3.0.0")
 
 ## ----seurat-not, echo = FALSE, results = 'asis', eval = !seurat_present----
-#  cat("> **NOTE:** This section requires the Seurat package.",
+#  cat("> **NOTE:** This section requires the Seurat package (>= 3.0.0).",
 #      "This package isn't installed so the results won't be shown.")
 
 ## ----seurat, eval = seurat_present---------------------------------------
 suppressPackageStartupMessages(library("Seurat"))
 
-seurat <- CreateSeuratObject(sc_example$counts,
+# Create the Seurat object
+seurat <- CreateSeuratObject(counts = sc_example$counts,
                              meta.data = sc_example$seurat_clusters)
-seurat <- SetDimReduction(seurat, "TSNE", "cell.embeddings", sc_example$tsne)
+
+# Add the t-SNE embedding
+seurat[['TSNE']] <- CreateDimReducObject(embeddings = sc_example$tsne,
+                                         key = "tSNE_")
 
 ## ----seurat-meta, eval = seurat_present----------------------------------
-head(seurat@meta.data)
+head(seurat[[]])
 
 ## ----seurat-plot, eval = seurat_present----------------------------------
-clustree(seurat)
+clustree(seurat, prefix = "res.")
 
 ## ----plot-gene, eval = seurat_present------------------------------------
-clustree(seurat, node_colour = "Gene730", node_colour_aggr = "median")
+clustree(seurat, prefix = "res.",
+         node_colour = "Gene730", node_colour_aggr = "median")
 
 ## ----iris-overlay--------------------------------------------------------
 clustree_overlay(iris_clusts, prefix = "K", x_value = "PC1", y_value = "PC2")
