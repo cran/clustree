@@ -1,40 +1,40 @@
-## ----setup, include = FALSE----------------------------------------------
+## ----setup, include = FALSE---------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 
-## ----load-iris-----------------------------------------------------------
+## ----load-iris----------------------------------------------------------------
 library(clustree)
 data("iris_clusts")
 
 head(iris_clusts)
 
-## ----iris-plot-----------------------------------------------------------
+## ----iris-plot----------------------------------------------------------------
 clustree(iris_clusts, prefix = "K")
 
-## ----iris-aes-static-----------------------------------------------------
+## ----iris-aes-static----------------------------------------------------------
 clustree(iris_clusts, prefix = "K", node_colour = "purple", node_size = 10,
          node_alpha = 0.8)
 
-## ----iris-aes------------------------------------------------------------
+## ----iris-aes-----------------------------------------------------------------
 clustree(iris_clusts, prefix = "K", node_colour = "Sepal.Width",
          node_colour_aggr = "mean")
 
-## ----iris-stability------------------------------------------------------
+## ----iris-stability-----------------------------------------------------------
 clustree(iris_clusts, prefix = "K", node_colour = "sc3_stability")
 
-## ----iris-layout---------------------------------------------------------
+## ----iris-layout--------------------------------------------------------------
 clustree(iris_clusts, prefix = "K", layout = "sugiyama")
 
-## ----iris-layout-nocore--------------------------------------------------
+## ----iris-layout-nocore-------------------------------------------------------
 clustree(iris_clusts, prefix = "K", layout = "sugiyama", use_core_edges = FALSE)
 
-## ----iris-labels---------------------------------------------------------
+## ----iris-labels--------------------------------------------------------------
 clustree(iris_clusts, prefix = "K", node_label = "Petal.Length",
          node_label_aggr = "max")
 
-## ----iris-labels-custom--------------------------------------------------
+## ----iris-labels-custom-------------------------------------------------------
 label_species <- function(labels) {
     if (length(unique(labels)) == 1) {
         species <- as.character(unique(labels))
@@ -47,18 +47,18 @@ label_species <- function(labels) {
 clustree(iris_clusts, prefix = "K", node_label = "Species",
          node_label_aggr = "label_species")
 
-## ----sc-example----------------------------------------------------------
+## ----sc-example---------------------------------------------------------------
 data("sc_example")
 names(sc_example)
 
-## ----sce-present, echo = FALSE-------------------------------------------
+## ----sce-present, echo = FALSE------------------------------------------------
 sce_present <- requireNamespace("SingleCellExperiment", quietly = TRUE)
 
-## ----sce-not, echo = FALSE, results = "asis", eval = !sce_present--------
+## ----sce-not, echo = FALSE, results = "asis", eval = !sce_present-------------
 #  cat("> **NOTE:** This section requires the SingleCellExperiment package.",
 #      "This package isn't installed so the results won't be shown.")
 
-## ----sce, eval = sce_present---------------------------------------------
+## ----sce, eval = sce_present--------------------------------------------------
 suppressPackageStartupMessages(library("SingleCellExperiment"))
 
 sce <- SingleCellExperiment(assays = list(counts = sc_example$counts,
@@ -66,21 +66,21 @@ sce <- SingleCellExperiment(assays = list(counts = sc_example$counts,
                             colData = sc_example$sc3_clusters,
                             reducedDims = SimpleList(TSNE = sc_example$tsne))
 
-## ----sce-colData, eval = sce_present-------------------------------------
+## ----sce-colData, eval = sce_present------------------------------------------
 head(colData(sce))
 
-## ----sce-plot, eval = sce_present----------------------------------------
+## ----sce-plot, eval = sce_present---------------------------------------------
 clustree(sce, prefix = "sc3_", suffix = "_clusters")
 
-## ----seurat-present, echo = FALSE----------------------------------------
+## ----seurat-present, echo = FALSE---------------------------------------------
 seurat_present <- requireNamespace("Seurat", quietly = TRUE) &&
     packageVersion("Seurat") >= package_version(x = "3.0.0")
 
-## ----seurat-not, echo = FALSE, results = 'asis', eval = !seurat_present----
+## ----seurat-not, echo = FALSE, results = 'asis', eval = !seurat_present-------
 #  cat("> **NOTE:** This section requires the Seurat package (>= 3.0.0).",
 #      "This package isn't installed so the results won't be shown.")
 
-## ----seurat, eval = seurat_present---------------------------------------
+## ----seurat, eval = seurat_present--------------------------------------------
 suppressPackageStartupMessages(library("Seurat"))
 
 # Create the Seurat object
@@ -91,28 +91,28 @@ seurat <- CreateSeuratObject(counts = sc_example$counts,
 seurat[['TSNE']] <- CreateDimReducObject(embeddings = sc_example$tsne,
                                          key = "tSNE_")
 
-## ----seurat-meta, eval = seurat_present----------------------------------
+## ----seurat-meta, eval = seurat_present---------------------------------------
 head(seurat[[]])
 
-## ----seurat-plot, eval = seurat_present----------------------------------
+## ----seurat-plot, eval = seurat_present---------------------------------------
 clustree(seurat, prefix = "res.")
 
-## ----plot-gene, eval = seurat_present------------------------------------
+## ----plot-gene, eval = seurat_present-----------------------------------------
 clustree(seurat, prefix = "res.",
          node_colour = "Gene730", node_colour_aggr = "median")
 
-## ----iris-overlay--------------------------------------------------------
+## ----iris-overlay-------------------------------------------------------------
 clustree_overlay(iris_clusts, prefix = "K", x_value = "PC1", y_value = "PC2")
 
-## ----iris-overlay-colour-------------------------------------------------
+## ----iris-overlay-colour------------------------------------------------------
 clustree_overlay(iris_clusts, prefix = "K", x_value = "PC1", y_value = "PC2",
                  use_colour = "points", alt_colour = "blue")
 
-## ----iris-overlay-labels-------------------------------------------------
+## ----iris-overlay-labels------------------------------------------------------
 clustree_overlay(iris_clusts, prefix = "K", x_value = "PC1", y_value = "PC2",
                  label_nodes = TRUE)
 
-## ----iris-overlay-sides--------------------------------------------------
+## ----iris-overlay-sides-------------------------------------------------------
 overlay_list <- clustree_overlay(iris_clusts, prefix = "K", x_value = "PC1",
                                  y_value = "PC2", plot_sides = TRUE)
 
@@ -121,16 +121,16 @@ names(overlay_list)
 overlay_list$x_side
 overlay_list$y_side
 
-## ----modify--------------------------------------------------------------
+## ----modify-------------------------------------------------------------------
 clustree(iris_clusts, prefix = "K") +
     scale_color_brewer(palette = "Set1") +
     scale_edge_color_continuous(low = "blue", high = "red")
 
-## ----legends-------------------------------------------------------------
+## ----legends------------------------------------------------------------------
 clustree(iris_clusts, prefix = "K") +
     guides(edge_colour = FALSE, edge_alpha = FALSE) +
     theme(legend.position = "bottom")
 
-## ----citation------------------------------------------------------------
+## ----citation-----------------------------------------------------------------
 citation("clustree")
 
