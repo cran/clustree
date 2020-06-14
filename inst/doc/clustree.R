@@ -4,48 +4,48 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-## ----load-iris----------------------------------------------------------------
+## ----load-nba-----------------------------------------------------------------
 library(clustree)
-data("iris_clusts")
+data("nba_clusts")
 
-head(iris_clusts)
+head(nba_clusts)
 
-## ----iris-plot----------------------------------------------------------------
-clustree(iris_clusts, prefix = "K")
+## ----nba-plot-----------------------------------------------------------------
+clustree(nba_clusts, prefix = "K")
 
-## ----iris-aes-static----------------------------------------------------------
-clustree(iris_clusts, prefix = "K", node_colour = "purple", node_size = 10,
+## ----nba-aes-static-----------------------------------------------------------
+clustree(nba_clusts, prefix = "K", node_colour = "purple", node_size = 10,
          node_alpha = 0.8)
 
-## ----iris-aes-----------------------------------------------------------------
-clustree(iris_clusts, prefix = "K", node_colour = "Sepal.Width",
+## ----nba-aes------------------------------------------------------------------
+clustree(nba_clusts, prefix = "K", node_colour = "ReboundPct",
          node_colour_aggr = "mean")
 
-## ----iris-stability-----------------------------------------------------------
-clustree(iris_clusts, prefix = "K", node_colour = "sc3_stability")
+## ----nba-stability------------------------------------------------------------
+clustree(nba_clusts, prefix = "K", node_colour = "sc3_stability")
 
-## ----iris-layout--------------------------------------------------------------
-clustree(iris_clusts, prefix = "K", layout = "sugiyama")
+## ----nba-layout---------------------------------------------------------------
+clustree(nba_clusts, prefix = "K", layout = "sugiyama")
 
-## ----iris-layout-nocore-------------------------------------------------------
-clustree(iris_clusts, prefix = "K", layout = "sugiyama", use_core_edges = FALSE)
+## ----nba-layout-nocore--------------------------------------------------------
+clustree(nba_clusts, prefix = "K", layout = "sugiyama", use_core_edges = FALSE)
 
-## ----iris-labels--------------------------------------------------------------
-clustree(iris_clusts, prefix = "K", node_label = "Petal.Length",
+## ----nba-labels---------------------------------------------------------------
+clustree(nba_clusts, prefix = "K", node_label = "AssistPct",
          node_label_aggr = "max")
 
-## ----iris-labels-custom-------------------------------------------------------
-label_species <- function(labels) {
+## ----nba-labels-custom--------------------------------------------------------
+label_position <- function(labels) {
     if (length(unique(labels)) == 1) {
-        species <- as.character(unique(labels))
+        position <- as.character(unique(labels))
     } else {
-        species <- "mixed"
+        position <- "mixed"
     }
-    return(species)
+    return(position)
 }
 
-clustree(iris_clusts, prefix = "K", node_label = "Species",
-         node_label_aggr = "label_species")
+clustree(nba_clusts, prefix = "K", node_label = "Position",
+         node_label_aggr = "label_position")
 
 ## ----sc-example---------------------------------------------------------------
 data("sc_example")
@@ -101,19 +101,19 @@ clustree(seurat, prefix = "res.")
 clustree(seurat, prefix = "res.",
          node_colour = "Gene730", node_colour_aggr = "median")
 
-## ----iris-overlay-------------------------------------------------------------
-clustree_overlay(iris_clusts, prefix = "K", x_value = "PC1", y_value = "PC2")
+## ----nba-overlay--------------------------------------------------------------
+clustree_overlay(nba_clusts, prefix = "K", x_value = "PC1", y_value = "PC2")
 
-## ----iris-overlay-colour------------------------------------------------------
-clustree_overlay(iris_clusts, prefix = "K", x_value = "PC1", y_value = "PC2",
+## ----nba-overlay-colour-------------------------------------------------------
+clustree_overlay(nba_clusts, prefix = "K", x_value = "PC1", y_value = "PC2",
                  use_colour = "points", alt_colour = "blue")
 
-## ----iris-overlay-labels------------------------------------------------------
-clustree_overlay(iris_clusts, prefix = "K", x_value = "PC1", y_value = "PC2",
+## ----nba-overlay-labels-------------------------------------------------------
+clustree_overlay(nba_clusts, prefix = "K", x_value = "PC1", y_value = "PC2",
                  label_nodes = TRUE)
 
-## ----iris-overlay-sides-------------------------------------------------------
-overlay_list <- clustree_overlay(iris_clusts, prefix = "K", x_value = "PC1",
+## ----nba-overlay-sides--------------------------------------------------------
+overlay_list <- clustree_overlay(nba_clusts, prefix = "K", x_value = "PC1",
                                  y_value = "PC2", plot_sides = TRUE)
 
 names(overlay_list)
@@ -122,12 +122,12 @@ overlay_list$x_side
 overlay_list$y_side
 
 ## ----modify-------------------------------------------------------------------
-clustree(iris_clusts, prefix = "K") +
+clustree(nba_clusts, prefix = "K") +
     scale_color_brewer(palette = "Set1") +
     scale_edge_color_continuous(low = "blue", high = "red")
 
 ## ----legends------------------------------------------------------------------
-clustree(iris_clusts, prefix = "K") +
+clustree(nba_clusts, prefix = "K") +
     guides(edge_colour = FALSE, edge_alpha = FALSE) +
     theme(legend.position = "bottom")
 
