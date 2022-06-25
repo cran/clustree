@@ -1,9 +1,9 @@
-14f8cfb9e2d8f668db7c81a8c9f9990a *DESCRIPTION
+ae1f7b1d178286118408200c6eb57607 *DESCRIPTION
 f67ee916165f16a5e9be26a552e6c759 *NAMESPACE
-373e785910bef7496d81be1c980df1f4 *NEWS.md
+109c23c6224bf437e05bcb1d96a3af8c *NEWS.md
 72d324c9050f06a71fe7f47c267ae018 *R/checks.R
 6880fa5f8bfb5fa4bab08d11260d4b61 *R/clustree-package.R
-df196e38574072a973dcfda1e50fde31 *R/clustree.R
+609b6462545ef2177c9a4342b9891f95 *R/clustree.R
 918ead1c8d7aad85ebcb4269a1b7deea *R/clustree_overlay.R
 bda3e5bc311229c26e1b46b728c95083 *R/datasets.R
 d9d157c083d4d79068fd71da6b18122c *R/graph.R
@@ -16,7 +16,7 @@ e15a7dbe3cc0286303a513c86f71b7c7 *README.md
 2dda5e1e65e91557a3c67561e1908880 *inst/WORDLIST
 9b40bba874706240372470d08b0c7150 *inst/doc/clustree.R
 06ba8059aba535f33515798f16834b5a *inst/doc/clustree.Rmd
-8b2a05d9fdf0d3ab1fe9ddada552023a *inst/doc/clustree.html
+94cf17f422772e4273114f9d23a544ba *inst/doc/clustree.html
 2d2f0e11aa997c69fac28ad42724b4cb *man/add_node_labels.Rd
 be3643e7f60efd3c8a4f68d90997855e *man/add_node_points.Rd
 8fe824196766834812ddd6baf501aec3 *man/aggr_metadata.Rd
@@ -28,7 +28,7 @@ cd96484687d914f252a4bb990c94610f *man/assert_numeric_node_aes.Rd
 d651c9c77514b03e8b659fa6d4cac58b *man/calc_sc3_stability_cluster.Rd
 d6e95f309a3f2eb6e080250be67e1f8c *man/check_node_aes_list.Rd
 6d20cd5847c228a245289675cb887c16 *man/clustree-package.Rd
-8e7918c2d73d69609142ffa74f6cdfb3 *man/clustree.Rd
+5286aeac1ac05e0e1f3c64aaf6316330 *man/clustree.Rd
 a5e4ee8c481463a0e4fb57c3e90912c4 *man/clustree_overlay.Rd
 cc6c3d82c17a1be408146097a17b2e6c *man/figures/logo.png
 a56d1e59e617edb6005d42558be03a8e *man/get_tree_edges.Rd
@@ -36,7 +36,7 @@ a56d1e59e617edb6005d42558be03a8e *man/get_tree_edges.Rd
 f1c201670337a19cf4e75dbfaeab1abc *man/nba_clusts.Rd
 8914b1c223a3cedb53569fea32be46a6 *man/overlay_node_points.Rd
 25440aa64b2b3d23d6d07486badba893 *man/plot_overlay_side.Rd
-00bd3d7d82c1c300b896274a6e6d47e6 *man/sc_example.Rd
+d98010bad2f30b86e9f0326941d399fc *man/sc_example.Rd
 a85702c48e06472e7810f5b123bfe6e9 *man/store_node_aes.Rd
 0622a97a2aaa3c342f09636052c2d7f5 *tests/spelling.R
 7b9b0097a4627143a40778a42384407c *tests/testthat.R
