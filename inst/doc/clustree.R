@@ -74,17 +74,18 @@ clustree(sce, prefix = "sc3_", suffix = "_clusters")
 
 ## ----seurat-present, echo = FALSE---------------------------------------------
 seurat_present <- requireNamespace("Seurat", quietly = TRUE) &&
-    packageVersion("Seurat") >= package_version(x = "3.0.0")
+    packageVersion("Seurat") >= package_version(x = "5.0.0")
 
 ## ----seurat-not, echo = FALSE, results = 'asis', eval = !seurat_present-------
-#  cat("> **NOTE:** This section requires the Seurat package (>= 3.0.0).",
+#  cat("> **NOTE:** This section requires the Seurat package (>= 5.0.0).",
 #      "This package isn't installed so the results won't be shown.")
 
 ## ----seurat, eval = seurat_present--------------------------------------------
 suppressPackageStartupMessages(library("Seurat"))
 
-# Create the Seurat object
-seurat <- CreateSeuratObject(counts = sc_example$counts,
+# Create the Seurat object, Seurat >= expects a sparse matrix
+seurat <- CreateSeuratObject(counts = as(sc_example$counts, "sparseMatrix"),
+                             data = as(sc_example$logcounts, "sparseMatrix"),
                              meta.data = sc_example$seurat_clusters)
 
 # Add the t-SNE embedding
